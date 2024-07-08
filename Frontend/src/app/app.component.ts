@@ -2,11 +2,12 @@ import { NgFor } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { SvgIconComponent } from './lib/Icon/svg-icon/svg-icon.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, SvgIconComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

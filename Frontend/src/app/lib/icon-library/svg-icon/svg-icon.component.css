@@ -1,0 +1,28 @@
+:host {
+    display: contents;
+}
+
+.ss{
+    width: 20px;
+    height: 20px;
+}
+
+.sm{
+    width: 30px;
+    height: 30px;
+}
+
+.s{
+    width: 40px;
+    height: 40px;
+}
+
+.sl{
+    width: 50px;
+    height: 50px;
+}
+
+.sx{
+    width: 60px;
+    height: 60px;
+}

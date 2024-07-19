@@ -3,10 +3,9 @@ using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace API;
-[ApiController]
-[Route("api/[controller]")]
-public class UserController : ControllerBase
+namespace API.Controllers;
+
+public class UserController : BaseApiController
 {
     private readonly DatingAppDbContext _context;
     public UserController(DatingAppDbContext context)

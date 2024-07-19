@@ -33,6 +33,8 @@ public class UserConfiguration : BaseEntityConfiguration, IEntityTypeConfigurati
             FirstName = "System",
             LastName = "Admin",
             FullName = "System Admin",
+            PasswordHash = [],
+            PasswordSalt = [],
         });
     }
 }

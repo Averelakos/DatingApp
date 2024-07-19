@@ -1,4 +1,7 @@
 ﻿using Infrastructure;
+using Infrastructure.Configurations;
+using Infrastructure.Contracts;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace API;
@@ -9,6 +12,8 @@ public static class ServiceCollectionExtension
     {
         services.AddControllers();
         services.AddDatabaseSqlServer(configuration);
+        services.AddConfigurations(configuration);
+        services.AddInfrastructureServices();
         services.AddEndpointsApiExplorer();
         services.AddHttpContextAccessor();
     }
@@ -37,5 +42,32 @@ public static class ServiceCollectionExtension
     {
         return services
         .AddDbContext<DatingAppDbContext>(options => options.UseSqlite(configuration.GetConnectionString("DefaultConnectionSqlLight")));
+    }
+
+    /// <summary>
+    /// Adds the Infrastracture Services
+    /// </summary>
+    /// <param name="services"></param>
+    /// <returns></returns>
+    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
+    {
+        return services
+        .AddScoped<ITokenProviderService, TokenProviderService>();
+    }
+
+    /// <summary>
+    /// Adds the configurations.
+    /// </summary>
+    /// <param name="services">The services.</param>
+    /// <param name="configuration">The configuration.</param>
+    /// <returns></returns>
+    /// <exception cref="System.Exception">Missing token configuration</exception>
+    public static IServiceCollection AddConfigurations(this IServiceCollection services, IConfiguration configuration)
+    {
+        var tokenConfiguration = configuration.GetSection(nameof(TokenConfiguration)).Get<TokenConfiguration>();
+        if (tokenConfiguration is null)
+            throw new Exception("Missing token configuration");
+        services.AddSingleton(tokenConfiguration);
+        return services;
     }
 }

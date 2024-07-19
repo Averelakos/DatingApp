@@ -1,8 +1,9 @@
-import { NgFor } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SvgIconComponent } from './lib/Icon/svg-icon/svg-icon.component';
+import { SvgIconComponent } from './lib/icon-library/svg-icon/svg-icon.component';
+
+
 
 @Component({
   selector: 'app-root',

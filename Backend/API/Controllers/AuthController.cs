@@ -1,6 +1,7 @@
 ﻿using Application.Dtos.User;
 using Domain.Authentication;
 using Infrastructure;
+using Infrastructure.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
@@ -8,10 +9,10 @@ using System.Text;
 
 namespace API.Controllers
 {
-    public class AuthController(DatingAppDbContext context): BaseApiController
+    public class AuthController(DatingAppDbContext context, ITokenProviderService tokenProviderService): BaseApiController
     {
         [HttpPost("Register")]
-        public async Task<ActionResult<User>> Register(UserRegisterDto userRegisterDto)
+        public async Task<ActionResult<UserTokenDto>> Register(UserRegisterDto userRegisterDto)
         {
             var userExists = await context
                 .Users
@@ -34,11 +35,15 @@ namespace API.Controllers
 
             context.Users.Add(newUser);
             await context.SaveChangesAsync();
-            return Ok(newUser);
+            UserTokenDto userToken = new UserTokenDto()
+            {
+                Token = tokenProviderService.CreateToken(newUser)
+            };
+            return Ok(userToken);
         }
 
         [HttpPost("Login")]
-        public async Task<ActionResult<User>> Login(UserLoginDto userLoginDto)
+        public async Task<ActionResult<UserTokenDto>> Login(UserLoginDto userLoginDto)
         {
             var userExists = await context
                 .Users
@@ -57,7 +62,12 @@ namespace API.Controllers
                     return Unauthorized("Invalid password");
             }
 
-            return Ok(userExists);
+            UserTokenDto userToken = new UserTokenDto()
+            {
+                Token = tokenProviderService.CreateToken(userExists)
+            };
+
+            return Ok(userToken);
         }
     }
 }

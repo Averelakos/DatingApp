@@ -1,12 +1,13 @@
 ﻿using Domain.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using PassionPortal.Infrastructure.Common.Persistance.Configurations;
 
-namespace PassionPortal.Infrastracture;
+namespace PassionPortal.Infrastructure.Common.Persistance.Configurations.AuthConfiguration;
 
 public class UserConfiguration : BaseEntityConfiguration, IEntityTypeConfiguration<User>
 {
-    public UserConfiguration() : base(){}
+    public UserConfiguration() : base() { }
     public void Configure(EntityTypeBuilder<User> builder)
     {
         ApplyConfiguration(builder);
@@ -24,7 +25,7 @@ public class UserConfiguration : BaseEntityConfiguration, IEntityTypeConfigurati
         Seed(builder);
     }
 
-    private static void Seed(EntityTypeBuilder<User> builder) 
+    private static void Seed(EntityTypeBuilder<User> builder)
     {
         builder.HasData(new User()
         {

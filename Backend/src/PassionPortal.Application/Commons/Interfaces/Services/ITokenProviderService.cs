@@ -1,6 +1,6 @@
 ﻿using Domain.Authentication;
 
-namespace PassionPortal.Infrastracture.Contracts
+namespace PassionPortal.Application.Commons.Interfaces
 {
     public interface ITokenProviderService
     {

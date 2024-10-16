@@ -2,13 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace PassionPortal.Infrastracture;
+namespace PassionPortal.Infrastructure.Common.Persistance.Configurations;
 
 public abstract class BaseEntityConfiguration
 {
-    public BaseEntityConfiguration(){}
+    public BaseEntityConfiguration() { }
 
-    public void ConfigurationBase<TEntity>(EntityTypeBuilder<TEntity> entity) where TEntity: BaseEntity
+    public void ConfigurationBase<TEntity>(EntityTypeBuilder<TEntity> entity) where TEntity : BaseEntity
     {
         // Identifier
         entity.HasKey(x => x.Id);
@@ -17,7 +17,7 @@ public abstract class BaseEntityConfiguration
             .HasColumnType("datetime2(7)")
             .IsRequired()
             .HasDefaultValueSql("GETUTCDATE()");
-         // Last Updated
+        // Last Updated
         entity.Property(e => e.LastUpdated)
             .HasColumnType("datetime2(7)")
             .IsRequired()
@@ -34,5 +34,5 @@ public abstract class BaseEntityConfiguration
             .WithMany()
             .HasForeignKey(e => e.LastUpdatedById)
             .OnDelete(DeleteBehavior.Restrict);
-            }
+    }
 }

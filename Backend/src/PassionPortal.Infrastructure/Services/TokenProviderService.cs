@@ -1,7 +1,7 @@
 ﻿using Domain.Authentication;
-using PassionPortal.Infrastracture.Configurations;
-using PassionPortal.Infrastracture.Contracts;
 using Microsoft.IdentityModel.Tokens;
+using PassionPortal.Application.Commons.Interfaces;
+using PassionPortal.Infrastracture.Configurations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;

@@ -1,74 +1,39 @@
 ﻿using Application.Dtos.User;
-using Domain.Authentication;
-
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PassionPortal.Infrastracture;
-using PassionPortal.Infrastracture.Contracts;
-using System.Security.Cryptography;
-using System.Text;
+using PassionPortal.Application.Authentications;
+using System.Threading;
 
 namespace PassionPortal.API.Controllers
 {
-    public class AuthController(DatingAppDbContext context, ITokenProviderService tokenProviderService): BaseApiController
+    public class AuthController: BaseApiController
     {
-        [HttpPost("Register")]
-        public async Task<ActionResult<UserTokenDto>> Register(UserRegisterDto userRegisterDto)
+        protected readonly UserService _userService;
+
+        public AuthController(UserService userService)
         {
-            var userExists = await context
-                .Users
-                .FirstOrDefaultAsync(x => x.UserName == userRegisterDto.UserName.ToLower());
+            _userService = userService;
+        }
 
-            if (userExists is not null) 
-                return Unauthorized("That user name already exists");
+        [HttpPost("Register")]
+        public async Task<ActionResult<UserTokenDto>> Register(UserRegisterDto userRegisterDto, CancellationToken cancellationToken)
+        {
+            var result = await _userService.CreateUser(userRegisterDto, cancellationToken);
 
-            using var hmac = new HMACSHA512();
-
-            User newUser = new User
-            {
-                UserName = userRegisterDto.UserName.ToLower(),
-                FirstName = userRegisterDto.FirstName,
-                LastName = userRegisterDto.LastName,
-                FullName = userRegisterDto.FirstName + " " + userRegisterDto.LastName,
-                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(userRegisterDto.Password)),
-                PasswordSalt = hmac.Key
-            };
-
-            context.Users.Add(newUser);
-            await context.SaveChangesAsync();
-            UserTokenDto userToken = new UserTokenDto()
-            {
-                Token = tokenProviderService.CreateToken(newUser)
-            };
-            return Ok(userToken);
+            if (result is null) 
+                return BadRequest();
+            else
+                return Ok();
         }
 
         [HttpPost("Login")]
-        public async Task<ActionResult<UserTokenDto>> Login(UserLoginDto userLoginDto)
+        public async Task<ActionResult<UserTokenDto>> Login(UserLoginDto userLoginDto, CancellationToken cancellationToken)
         {
-            var userExists = await context
-                .Users
-                .FirstOrDefaultAsync(x => x.UserName == userLoginDto.UserName.ToLower());
+            var result = await _userService.LoginUser(userLoginDto, cancellationToken);
 
-            if (userExists is null)
-                return Unauthorized("Invalid username");
-
-            using var hmac = new HMACSHA512(userExists.PasswordSalt);
-
-            var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(userLoginDto.Password));
-
-            for (int i = 0; i < computedHash.Length; i++) 
-            {
-                if(computedHash[i] != userExists.PasswordHash[i])
-                    return Unauthorized("Invalid password");
-            }
-
-            UserTokenDto userToken = new UserTokenDto()
-            {
-                Token = tokenProviderService.CreateToken(userExists)
-            };
-
-            return Ok(userToken);
+            if (result is null)
+                return BadRequest();
+            else
+                return Ok();
         }
     }
 }

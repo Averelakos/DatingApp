@@ -1,5 +1,5 @@
-﻿using Domain.Authentication;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using PassionPortal.Infrastructure.Common.Persistance.Configurations.AuthConfiguration;
 
 namespace PassionPortal.Infrastracture;
 public sealed partial class DatingAppDbContext : DbContext

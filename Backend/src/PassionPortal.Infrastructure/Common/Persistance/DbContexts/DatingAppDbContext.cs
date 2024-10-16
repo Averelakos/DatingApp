@@ -1,5 +1,4 @@
-﻿using Domain.Authentication;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace PassionPortal.Infrastracture;
 

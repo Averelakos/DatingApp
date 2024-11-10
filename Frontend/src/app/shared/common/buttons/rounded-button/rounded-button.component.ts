@@ -9,7 +9,7 @@ import IButtonProps from './ibuttonProps';
   encapsulation: ViewEncapsulation.None
 })
 export class RoundedButtonComponent implements IButtonProps{
-  @HostBinding('class.rounded-button') _customButtom = true;
+  @HostBinding('class.rounded-button') _roundedButtom = true;
   @HostBinding('class.rounded-button--outline') _outline = false;
   @HostBinding('class.rounded-button--primary')
   get light(): boolean {

@@ -22,7 +22,7 @@ export class RoundedButtonComponent implements IButtonProps{
 
   @Input() iconAlign: 'left' | 'right' = 'left'
   @Input() color!: 'primary' | 'secondary'
-  @Input() set outline(value: boolean) {
+  @Input() set outline(value: any) {
     this._outline = value !== null && `${value}` !== 'false'
   }
 

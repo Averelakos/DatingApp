@@ -7,7 +7,7 @@ import { IconInterface } from '../components/icon';
   standalone: true,
   imports: [],
   templateUrl: './svg-icon.component.html',
-  styleUrl: './svg-icon.component.css'
+  styleUrl: './svg-icon.component.scss'
 })
 export class SvgIconComponent implements AfterViewInit {
   @ViewChild('myname', {static: false}) svgElement!: ElementRef

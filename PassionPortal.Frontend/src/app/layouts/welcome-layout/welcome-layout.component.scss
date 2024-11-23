@@ -1,0 +1,53 @@
+.logo {
+	width: 100%;
+	max-width: 150px;
+	height: 100%;
+	max-height: 35px;
+	display: block;
+	&.primary {
+        width: 150px;
+        min-width: 150px;
+        height: 35px;
+        min-height: 35px;
+		background: url(../../../../public/imgs/PassionPortalLogo2-fotor-bg-remover-20241123144952.png) no-repeat
+			50% 50% / contain;
+	}
+}
+
+.welcome-header {
+    padding: 20px 5vw;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+
+    @media screen and (min-width: 768px) and (max-width: 1239.98px){
+        padding: 20px;
+    }
+    @media screen and (max-width: 767.98px){
+        padding: 20px;
+    }
+}
+
+.welcome-nav{
+
+}
+
+.welcome-list{
+    list-style: none;
+    display: flex;
+    align-items: center;
+
+    &-item{
+        width: 100%;
+        flex: 1 1 calc(100% / 6 - 20px);
+    }
+
+    &-link{
+        // @include mix.link;
+        color: var(--link-color);
+		white-space: nowrap;
+		transition: all 0.3s ease-in-out;
+    }
+}

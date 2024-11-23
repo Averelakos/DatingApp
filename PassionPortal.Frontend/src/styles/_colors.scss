@@ -1,0 +1,40 @@
+:root{
+    /* =========== Color Themes =========== */
+    --black: #1E1E1E;
+    --yellow: #FDBF48;
+    --dime-white: #FEFEFE;
+
+    /* =========== Project Color Definition =========== */
+
+    --primary-background: var(--yellow);
+    --primary-text: var(--dime-white);
+
+    /* =========== Project Color Definition =========== */
+    --welcome-header-bg-color: #010314;
+    --link-color: rgba(255, 255, 255, 0.5);
+    --link-hover-color: rgba(255, 255, 255, 1);
+    --link-active-color: rgba(255, 255, 255, 1);
+}
+
+/* 
+:root {
+	--header-bg-color: #010314;
+
+	--link-color: rgba(255, 255, 255, 0.5);
+	--link-hover-color: rgba(255, 255, 255, 1);
+	--link-active-color: rgba(255, 255, 255, 1);
+
+	--nav-bg-color: #010314;
+
+	--btn-secondary-bg-color: #ffffff;
+	--btn-secondary-color: #0e1014;
+	--btn-secondary-shadow-color: rgba(0, 0, 0, 0.1);
+	--btn-secondary-hover-bg-color: #3f71f6;
+	--btn-secondary-hover-color: #ffffff;
+	--btn-secondary-hover-border-color: #3f71f6;
+	--btn-secondary-hover-shadow-color: rgba(63, 113, 246, 0.3);
+	--btn-secondary-active-bg-color: #2a53b5;
+	--btn-secondary-active-shadow-color: rgba(0, 0, 0, 0.2);
+	--btn-secondary-focus-color: #ffffff;
+	--btn-secondary-focus-shadow-color: rgba(63, 113, 246, 0.5);
+} */

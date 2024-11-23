@@ -1,15 +1,15 @@
 import { HttpClient} from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { SvgIconComponent } from './shared/lib/icon-library/svg-icon/svg-icon.component';
-import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { WelcomeLayoutComponent } from './layouts/welcome-layout/welcome-layout.component';
+
+
 
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SvgIconComponent, AuthLayoutComponent],
+  imports: [WelcomeLayoutComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

@@ -1,3 +1,19 @@
 @mixin link {
-    
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--link-hover-color);
+        transition: all 0.3s ease-in-out;
+        text-shadow: 0 0 3px rgba(255, 2555, 255, 0.8), 0 0 15px rgba(255, 2555, 255, 0.6);
+    }
+
+    &:active {
+        color: var(--link-active-color);
+        text-shadow: 0 0 3px rgba(255, 2555, 255, 0.8), 0 0 15px rgba(255, 2555, 255, 0.6);
+    }
 }

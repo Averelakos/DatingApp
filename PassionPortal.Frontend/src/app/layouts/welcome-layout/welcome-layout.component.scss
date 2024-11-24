@@ -1,3 +1,5 @@
+@import 'mixins';
+
 .logo {
 	width: 100%;
 	max-width: 150px;
@@ -20,6 +22,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
+	background-color: var(--welcome-header-bg-color);
 
 
     @media screen and (min-width: 768px) and (max-width: 1239.98px){
@@ -28,10 +32,50 @@
     @media screen and (max-width: 767.98px){
         padding: 20px;
     }
+
+    &-logo {
+        min-width: 150px;
+    }
 }
 
 .welcome-nav{
+    @media screen and (min-width: 768px) and (max-width: 1239.98px) {
+        position: fixed;
+        top: 0;
+        right: -100vw;
+        width: 300px;
+        height: 100vh;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.3s ease-in-out;
+		background-color: var(--nav-bg-color);
 
+        &.show {
+			right: 0;
+		}
+    }
+
+    @media screen and (max-width: 767.98px) {
+		position: fixed;
+		top: 0;
+		right: -100vw;
+		width: 300px;
+		height: 100vh;
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		transition: right 0.3s ease-in-out;
+		background-color: var(--nav-bg-color);
+        
+		&.show {
+			right: 0;
+		}
+	}
 }
 
 .welcome-list{
@@ -39,13 +83,32 @@
     display: flex;
     align-items: center;
 
+    @media screen and (min-width: 768px) and (max-width: 1239.98px) {
+        width: 100%;
+        flex-direction: column;
+        margin: auto;
+    }
+
+    @media screen and (max-width: 767.98px) {
+        width: 100%;
+        flex-direction: column;
+        margin: auto;
+    }
+
     &-item{
         width: 100%;
         flex: 1 1 calc(100% / 6 - 20px);
+
+        &.active {
+            & .welcome-list-link {
+                color: var(--link-active-color);
+                text-shadow: 0 0 3px rgba(255, 2555, 255, 0.8), 0 0 15px rgba(255, 2555, 255, 0.6);
+            }
+        }
     }
 
     &-link{
-        // @include mix.link;
+        @include link;
         color: var(--link-color);
 		white-space: nowrap;
 		transition: all 0.3s ease-in-out;

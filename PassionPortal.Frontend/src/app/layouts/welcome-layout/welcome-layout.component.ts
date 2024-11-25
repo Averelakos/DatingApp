@@ -9,13 +9,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeLayoutComponent implements OnInit{
   menu!: HTMLElement | null
+  list!: HTMLElement | null
+  toggleNav!: HTMLElement | null
+
 
   ngOnInit(): void {
-    this.menu = document.getElementById("welcomeNav")
+    this.menu = document.getElementById('welcomeNav')
+    this.list = document.getElementById('welcomeList')
+    this.toggleNav = document.getElementById('toggleNav')
   }
   
-  toggleButtonMenu (event: any) {
-    event.currentTarget.classList.toggle('active')
+  toggleButtonMenu () {
+    this.toggleNav?.classList.toggle('active')
     this.menu?.classList.toggle('show')
+  }
+
+  toggleLink (event: any) {
+    let parentElement = event.target.parentNode
+    if (parentElement.classList.contains('active'))
+      return
+
+    this.list?.childNodes.forEach((child: any) => {
+      if(child.classList.contains('active'))
+        child.classList.remove('active')
+    })
+
+    parentElement.classList.add('active')
+
+    this.menu?.classList.remove('show')
+    this.toggleNav?.classList.remove('active')
+    
   }
 }

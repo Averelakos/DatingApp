@@ -3,7 +3,7 @@
         <span class="logo primary"></span>
     </a>
 
-    <nav class="welcome-nav">
+    <nav class="welcome-nav" id="welcomeNav">
 		<ul class="welcome-list">
 			<li class="welcome-list-item active">
 				<a href="#" class="welcome-list-link">Home</a>
@@ -24,7 +24,19 @@
 				<a href="#" class="welcome-list-link">History</a>
 			</li>
 		</ul>
-		<!-- <button type="button" class="btn secondary">Get Started</button> -->
+		<button type="button" class="welcome-btn">Get Started</button>
 	</nav>
+
+	<div class="welcome-header-buttons"> 
+		<button type="button" class="welcome-btn">Get Started</button>
+
+		<button class="welcome-btn-menu" id="toggleNav" (click)="toggleButtonMenu($event)">
+			<svg viewBox="0 0 64 48">
+				<path d="M19,15 L45,15 C70,15 58,-2 49.0177126,7 L19,37"></path>
+				<path d="M19,24 L45,24 C61.2371586,24 57,49 41,33 L32,24"></path>
+				<path d="M45,33 L19,33 C-8,33 6,-2 22,14 L45,37"></path>
+			</svg>
+		</button>
+	</div>
 
 </header>

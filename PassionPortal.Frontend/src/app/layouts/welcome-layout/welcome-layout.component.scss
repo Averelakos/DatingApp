@@ -16,6 +16,113 @@
 	}
 }
 
+.welcome-btn {
+    @include btn;
+    height: 50px;
+    padding: 11px 16px;
+    border-radius: 10px;
+    background-color: var(--btn-welcome-bg-color);
+    color: var(--btn-welcome-color);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow:  0 4px 6px var(--btn-welcome-shadow-color);
+    
+    &:hover {
+        background-color: var(--btn-welcome-hover-bg-color);
+        color: var(--btn-welcome-hover-color);
+        border: 1px solid var(--btn-welcome-hover-border-color);
+        box-shadow: 0 8px 16px var(--btn-welcome-hover-shadow-color);
+        transform: translateY(-3px);
+    }
+
+    &:active {
+        background-color: var(--btn-welcome-active-bg-color);
+        box-shadow: 0 4px 10px var(--btn-welcome-active-shadow-color);
+        transform: translateY(2px);
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px var(--btn-welcome-focus-shadow-color);
+        &:not(:hover) {
+            background-color: var(--btn-welcome-bg-color);
+            color: var(--btn-welcome-color);
+            border: 1px solid transparent;
+            box-shadow: 0 4px 6px var(--btn-welcome-shadow-color);
+        }
+    }
+}
+
+svg {
+    width: 50px;
+    height: 50px;
+    stroke: var(--btn-welcome-color);
+    stroke-width: 2px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    display: block;
+    position: absolute;
+
+    path {
+        transition: stroke-dasharray 0.85s ease 0s, stroke-dashoffset 0.85s ease 0s;
+        stroke-dasharray: 26px 100px;
+        stroke-dashoffset: 126px;
+        transform: translateZ(0);
+
+        &:nth-child(2) {
+            transition-duration: 0.7s;
+            transition-timing-function: ease-in;
+            stroke-dashoffset: 100px;
+            stroke-dasharray: 26px 74px;
+        }
+
+        &:nth-child(3) {
+            stroke-dashoffset: 133px;
+            stroke-dasharray: 26px 107px;
+        }
+    }
+}
+
+.welcome-btn-menu{
+    width: 50px;
+	min-width: 50px;
+	height: 50px;
+	min-height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	border: 1px solid transparent;
+	border-radius: 2px;
+	background-color: var(--btn-welcome-bg-color);
+	cursor: pointer;
+
+    &.active {
+		svg {
+			path {
+				stroke-dashoffset: 57px;
+
+				&:nth-child(1),
+				&:nth-child(3) {
+					transition-delay: 0.15s;
+					transition-timing-function: cubic-bezier(0.2, 0.4, 0.2, 1.1);
+				}
+
+				&:nth-child(2) {
+					transition-duration: 0.4s;
+					stroke-dashoffset: 2px;
+					stroke-dasharray: 1px 100px;
+				}
+
+				&:nth-child(3) {
+					stroke-dashoffset: 58px;
+				}
+			}
+		}
+	}
+}
+
 .welcome-header {
     padding: 20px 5vw;
     width: 100%;
@@ -24,6 +131,8 @@
     justify-content: space-between;
     gap: 20px;
 	background-color: var(--welcome-header-bg-color);
+    box-sizing: border-box;
+    font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1440 - 320)));
 
 
     @media screen and (min-width: 768px) and (max-width: 1239.98px){
@@ -51,7 +160,7 @@
         justify-content: center;
         align-items: center;
         transition: right 0.3s ease-in-out;
-		background-color: var(--nav-bg-color);
+		background-color: var(--welcome-header-bg-color);
 
         &.show {
 			right: 0;
@@ -59,7 +168,8 @@
     }
 
     @media screen and (max-width: 767.98px) {
-		position: fixed;
+		box-sizing: border-box;
+        position: fixed;
 		top: 0;
 		right: -100vw;
 		width: 300px;
@@ -70,12 +180,21 @@
 		justify-content: center;
 		align-items: center;
 		transition: right 0.3s ease-in-out;
-		background-color: var(--nav-bg-color);
-        
+		background-color: var(--welcome-header-bg-color);
+
 		&.show {
 			right: 0;
 		}
 	}
+
+    & .welcome-btn {
+        display: none;
+
+        @media screen and (max-width: 767.98px) {
+            display: flex;
+            width: 100%;
+        }
+    }    
 }
 
 .welcome-list{
@@ -112,5 +231,33 @@
         color: var(--link-color);
 		white-space: nowrap;
 		transition: all 0.3s ease-in-out;
+    }
+}
+
+.welcome-header-buttons {
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+
+    @media screen and (max-width: 463.98px) {
+        min-width: auto;
+    }
+
+    & .welcome-btn-menu{
+        display: none;
+        @media screen and (min-width: 768px) and (max-width: 1239.98px) {
+            display: flex;
+        }
+        @media screen and (max-width: 767.98px) {
+            display: flex;
+        }
+    }
+
+    & > .welcome-btn {
+        @media screen and (max-width: 767.98px) {
+            display: none;
+        }
     }
 }

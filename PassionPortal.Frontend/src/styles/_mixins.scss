@@ -1,10 +1,13 @@
+@import 'colors';
+
 @mixin link {
     padding: 14px 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	text-decoration: none;
+	cursor: pointer;
 
     &:hover {
         color: var(--link-hover-color);
@@ -16,4 +19,14 @@
         color: var(--link-active-color);
         text-shadow: 0 0 3px rgba(255, 2555, 255, 0.8), 0 0 15px rgba(255, 2555, 255, 0.6);
     }
+}
+
+@mixin btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	border-radius: 0;
+	border: 1px solid transparent;
+	background-color: transaprent;
 }

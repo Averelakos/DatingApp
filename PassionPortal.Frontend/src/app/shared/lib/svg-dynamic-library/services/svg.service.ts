@@ -1,12 +1,14 @@
 import { Injectable } from "@angular/core";
-import { IconInterface } from "./icon";
-import { iconList } from "./icons.config";
+import { Svg } from "../models/svg";
+import { iconList } from "../icons.config";
+
+
 
 @Injectable({
     providedIn: 'root',
 })
-export class IconService {
-    iconsList?: Array<IconInterface>
+export class SvgService {
+    iconsList?: Array<Svg>
 
     loadIcons() {
         this.iconsList = iconList

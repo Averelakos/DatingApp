@@ -5,24 +5,11 @@
 
     <nav class="welcome-nav" id="welcomeNav">
 		<ul class="welcome-list" id="welcomeList">
-			<li class="welcome-list-item active">
-				<a href="#" class="welcome-list-link" (click)="toggleLink($event)">Home</a>
-			</li>
-			<li class="welcome-list-item ">
-				<a href="#" class="welcome-list-link" (click)="toggleLink($event)">Mission</a>
-			</li>
-			<li class="welcome-list-item ">
-				<a href="#" class="welcome-list-link" (click)="toggleLink($event)">IPO&ICO</a>
-			</li>
-			<li class="welcome-list-item ">
-				<a href="#" class="welcome-list-link" (click)="toggleLink($event)">How It Works</a>
-			</li>
-			<li class="welcome-list-item ">
-				<a href="#" class="welcome-list-link" (click)="toggleLink($event)">Quotes</a>
-			</li>
-			<li class="welcome-list-item ">
-				<a href="#" class="welcome-list-link" (click)="toggleLink($event)">History</a>
-			</li>
+			@for (item of menuItems; track $index) {
+				<li class="welcome-list-item" [routerLinkActive]="'active'">
+					<a [routerLink]="item.link" class="welcome-list-link" (click)="toggleLink($event)">{{item.label}}</a>
+				</li>
+			}
 		</ul>
 		<button type="button" class="welcome-btn" (click)="toggleLink($event)">Get Started</button>
 	</nav>
@@ -38,5 +25,4 @@
 			</svg>
 		</button>
 	</div>
-
 </header>
